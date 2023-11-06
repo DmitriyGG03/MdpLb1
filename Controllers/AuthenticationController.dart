@@ -2,7 +2,7 @@ import 'dart:io';
 
 import '../Models/Domain/UserData.dart';
 import '../Models/Enums/AccountType.dart';
-import '../Models/User.dart';
+import '../Models/UserBase.dart';
 import '../Views/AuthenticationView.dart';
 import '../Views/ErrorView.dart';
 import 'CustomerController.dart';

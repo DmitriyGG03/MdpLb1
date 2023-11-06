@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import '../Models/Domain/UserData.dart';
 import '../Models/Enums/AccountType.dart';
-import '../Models/User.dart';
+import '../Models/UserBase.dart';
 import 'AuthenticationController.dart';
 
 class FileController {
