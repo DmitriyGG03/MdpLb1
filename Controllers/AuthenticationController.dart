@@ -1,11 +1,17 @@
 import 'dart:io';
 
+import '../Models/Domain/UserData.dart';
+import '../Models/Enums/AccountType.dart';
+import '../Models/User.dart';
 import '../Views/AuthenticationView.dart';
 import '../Views/ErrorView.dart';
+import 'CustomerController.dart';
 import 'FileController.dart';
+import 'ManagerController.dart';
 
 class AuthenticationController {
     final String _errorMessage = "Username or password is incorrect! Please, try again!";
+    static late final UserData userData;
 
     late final AuthenticationView authView;
     late final FileController _fileController;
@@ -20,7 +26,12 @@ class AuthenticationController {
     void ExecuteAuthenticationProcedure() {
         authView.StartAuthorization();
 
-        //TODO: Think about designating the rights and functionality of the client and manager accounts
+        if(userData.accountType == AccountType.Manager) {
+            ManagerController managerController = new ManagerController(userData.name);
+        }
+        else if(userData.accountType == AccountType.Customer) {
+            CustomerController customerController = new CustomerController(userData.name);
+        }
     }
     
     bool Authorize(String username, String password) {
