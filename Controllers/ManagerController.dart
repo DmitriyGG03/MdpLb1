@@ -1,5 +1,9 @@
-class ManagerController {
-    late final String name;
+import '../Models/Manager.dart';
 
-    ManagerController(this.name);
+class ManagerController {
+    late final Manager manager;
+
+    ManagerController(this.manager);
+    
+    
 }

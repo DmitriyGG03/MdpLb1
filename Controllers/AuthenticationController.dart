@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import '../Models/Customer.dart';
 import '../Models/Domain/UserData.dart';
 import '../Models/Enums/AccountType.dart';
-import '../Models/UserBase.dart';
+import '../Models/Manager.dart';
 import '../Views/AuthenticationView.dart';
 import '../Views/ErrorView.dart';
 import 'CustomerController.dart';
@@ -27,10 +28,10 @@ class AuthenticationController {
         authView.StartAuthorization();
 
         if(userData.accountType == AccountType.Manager) {
-            ManagerController managerController = new ManagerController(userData.name);
+            ManagerController managerController = new ManagerController(new Manager(userData.name));
         }
         else if(userData.accountType == AccountType.Customer) {
-            CustomerController customerController = new CustomerController(userData.name);
+            CustomerController customerController = new CustomerController(new Customer(userData.name));
         }
     }
     

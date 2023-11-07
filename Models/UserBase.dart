@@ -1,4 +1,4 @@
-import 'Product.dart';
+import 'Domain/Product.dart';
 
 abstract class UserBase {
   late String _username;

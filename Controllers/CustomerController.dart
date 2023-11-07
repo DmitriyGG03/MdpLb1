@@ -1,5 +1,9 @@
-class CustomerController {
-  late final String name;
+import '../Models/Customer.dart';
 
-  CustomerController(this.name);
+class CustomerController {
+  late final Customer customer;
+
+  CustomerController(this.customer);
+  
+  
 }
