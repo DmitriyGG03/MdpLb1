@@ -117,6 +117,16 @@ class FileController {
     }
     
     //endregion
+    
+    Future<void> ChangeProductPrice(String productName, double newPrice, double newWholesalePrice) async {
+      List<Product> products = await GetProductsAsync();
+      
+      int indexOfSelectedProduct = products.indexWhere((p) => p.name == productName);
+      products[indexOfSelectedProduct].price = newPrice;
+      products[indexOfSelectedProduct].wholesalePrice = newWholesalePrice;
+      
+      await WriteProductsInFile(products);         
+    }
 
     Future<bool> AuthenticationAsync(String username, String password) async {
         List<UserData> users = await _GetUsersAsync();

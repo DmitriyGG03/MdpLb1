@@ -6,4 +6,6 @@ abstract class UserBase {
   UserBase(String username) {
     this._username = username;
   }
+  
+  
 }

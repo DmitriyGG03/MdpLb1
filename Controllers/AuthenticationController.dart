@@ -28,10 +28,10 @@ class AuthenticationController {
         authView.StartAuthorization();
 
         if(userData.accountType == AccountType.Manager) {
-            ManagerController managerController = new ManagerController(new Manager(userData.name));
+            ManagerController managerController = new ManagerController(new Manager(userData.name), _fileController);
         }
         else if(userData.accountType == AccountType.Customer) {
-            CustomerController customerController = new CustomerController(new Customer(userData.name));
+            CustomerController customerController = new CustomerController(new Customer(userData.name), _fileController);
         }
     }
     
