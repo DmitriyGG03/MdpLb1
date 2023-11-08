@@ -1,13 +1,14 @@
 import 'dart:io';
 
+
 class Helper {
   
   static void ClearConsole() {
     if (Platform.isWindows) {
-      Process.run('cls', []);
+      print(Process.runSync("clear", [], runInShell: true).stdout);
     } else {
-      Process.run('clear', []);
-    }
+      throw new Exception("Not implemented for non-windows platforms!");
+    }    
   }
   
   static void CloseApplication() {

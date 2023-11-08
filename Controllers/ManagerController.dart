@@ -15,7 +15,7 @@ class ManagerController {
   late final ManagerView managerView;
   late final FileController _fileController;
 
-  ManagerController(this.manager, this._fileController) {
+  ManagerController(this.manager, this._fileController) : super() {
     managerView = new ManagerView(this);
 
     SelectActionNumber();
@@ -52,7 +52,7 @@ class ManagerController {
   }
   
   Future<Product> FindProductByName() async {
-      return managerView.GetProductByName(await _fileController.GetProductsAsync());
+      return managerView.GetProductByName(await _fileController.GetProducts());
   }
   
   bool ProductSelectionHandler(String inputActionNumber, int length) {

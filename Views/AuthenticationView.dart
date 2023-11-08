@@ -20,10 +20,10 @@ class AuthenticationView {
         stdout.write("Enter your username (Enter \"exit\" to close app): ");
         inputUsername = stdin.readLineSync() ?? "";
 
-        stdout.write("Enter password: ");
+        stdout.write("Enter password (If you entered \"exit\" just press Enter): ");
         inputPassword = stdin.readLineSync() ?? "";
 
-      } while(!_controller.Authorize(inputUsername, inputPassword));
+      } while(!_controller.AuthorizationInputHandler(inputUsername, inputPassword));
     }
 
 }

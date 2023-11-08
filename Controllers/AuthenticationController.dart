@@ -6,6 +6,7 @@ import '../Models/Enums/AccountType.dart';
 import '../Models/Manager.dart';
 import '../Views/AuthenticationView.dart';
 import '../Views/ErrorView.dart';
+import '../Views/Helper.dart';
 import 'CustomerController.dart';
 import 'FileController.dart';
 import 'ManagerController.dart';
@@ -35,19 +36,14 @@ class AuthenticationController {
         }
     }
     
-    bool Authorize(String username, String password) {
-        if (username == "exit") exit(0);
+    bool AuthorizationInputHandler(String username, String password) {
+        if(username == "exit") Helper.CloseApplication();
+        else if(!_fileController.Authentication(username, password)) {
+            ErrorView.DisplayErrorMessage(_errorMessage);
 
-        Future.sync(() async {
-
-            if (username.isEmpty | password.isEmpty | !await _fileController.AuthenticationAsync(username, password)) {
-                ErrorView.DisplayErrorMessage(_errorMessage);
-
-                return false;
-            }
-
-        });
-
+            return false;
+        }
+        
         return true;
     }
 }

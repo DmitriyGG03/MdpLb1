@@ -5,7 +5,6 @@ import 'dart:convert';
 import '../Models/Domain/UserData.dart';
 import '../Models/Enums/AccountType.dart';
 import '../Models/Domain/Product.dart';
-import '../Models/UserBase.dart';
 import 'AuthenticationController.dart';
 
 class FileController {
@@ -36,13 +35,13 @@ class FileController {
         Product("Bread rolls", 1.2, 1.15, 400, 100),
       ];
 
-      await WriteUsersInFile(initUsersData);
-      await WriteProductsInFile(initProductsData);
+      WriteUsersInFile(initUsersData);
+      WriteProductsInFile(initProductsData);
     }
     
     //region Users
 
-    Future<List<UserData>> _GetUsersAsync() async {
+    List<UserData> _GetUsers() {
       File file = File(_usersFilePath);
 
       try {
@@ -50,13 +49,12 @@ class FileController {
           throw new Exception("File is not exist");
         }
 
-        final contents = await file.readAsString();
+        final jsonString = file.readAsStringSync();
 
-        if (contents.isEmpty) {
+        if (jsonString.isEmpty) {
           throw new Exception("File is empty");
         }
-
-        final jsonString = await file.readAsString();
+        
         final jsonList = jsonDecode(jsonString) as List;
         return jsonList.map((json) => UserData.fromJson(json)).toList();
       }
@@ -65,23 +63,23 @@ class FileController {
       }
     }
 
-    Future<void> WriteUsersInFile(List<UserData> userList) async {
+    void WriteUsersInFile(List<UserData> userList) {
       final file = File(_usersFilePath);
-
-      if (!await file.exists()) {
-        await file.create(recursive: true);
+      
+      if (!file.existsSync()) {
+        file.create(recursive: true);
       }
 
       final userListJson = userList.map((user) => user.toJson()).toList();
       final jsonString = jsonEncode(userListJson);
-      await file.writeAsString(jsonString);
+      file.writeAsStringSync(jsonString);
     }
     
     //endregion
     
     //region Products
 
-    Future<List<Product>> GetProductsAsync() async {
+    List<Product> GetProducts()  {
       File file = File(_productsFilePath);
 
       try {
@@ -89,13 +87,12 @@ class FileController {
           throw new Exception("File is not exist");
         }
 
-        final contents = await file.readAsString();
+        final jsonString = file.readAsStringSync();
 
-        if (contents.isEmpty) {
+        if (jsonString.isEmpty) {
           throw new Exception("File is empty");
         }
-
-        final jsonString = await file.readAsString();
+        
         final jsonList = jsonDecode(jsonString) as List;
         return jsonList.map((json) => Product.fromJson(json)).toList();
       }
@@ -104,37 +101,43 @@ class FileController {
       }
     }
 
-    Future<void> WriteProductsInFile(List<Product> productList) async {
+    void WriteProductsInFile(List<Product> productList) {
       final file = File(_productsFilePath);
 
-      if (!await file.exists()) {
-        await file.create(recursive: true);
+      if (!file.existsSync()) {
+        file.create(recursive: true);
       }
 
       final productListJson = productList.map((pr) => pr.toJson()).toList();
       final jsonString = jsonEncode(productListJson);
-      await file.writeAsString(jsonString);
+      file.writeAsStringSync(jsonString);
     }
     
     //endregion
     
-    Future<void> ChangeProductPrice(String productName, double newPrice, double newWholesalePrice) async {
-      List<Product> products = await GetProductsAsync();
+    void ChangeProductPrice(String productName, double newPrice, double newWholesalePrice) {
+      List<Product> products = GetProducts();
       
       int indexOfSelectedProduct = products.indexWhere((p) => p.name == productName);
       products[indexOfSelectedProduct].price = newPrice;
       products[indexOfSelectedProduct].wholesalePrice = newWholesalePrice;
       
-      await WriteProductsInFile(products);         
+      WriteProductsInFile(products);         
     }
 
-    Future<bool> AuthenticationAsync(String username, String password) async {
-        List<UserData> users = await _GetUsersAsync();
+    bool Authentication(String username, String password) {
+        List<UserData> users = _GetUsers();
+        UserData? _userData = null;
 
-        UserData? userData = users.firstWhere((u) => (u.name == username) & (u.password == password));
-        if(userData == Null) return false;
+        for(UserData userData in users) {
+          if((userData.name == username) & (userData.password == password)) {
+            _userData = userData;
+          }            
+        }
+        
+        if(_userData == null) return false;
 
-        AuthenticationController.userData = userData;
+        AuthenticationController.userData = _userData;
         return true;
     }
 }
