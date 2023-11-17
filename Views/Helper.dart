@@ -3,12 +3,14 @@ import 'dart:io';
 
 class Helper {
   
-  static void ClearConsole() {
-    if (Platform.isWindows) {
-      print(Process.runSync("clear", [], runInShell: true).stdout);
-    } else {
-      throw new Exception("Not implemented for non-windows platforms!");
-    }    
+  static void DrowEndMessage() {
+    stdout.write("\n");
+    
+    for (int i = 0; i < 20; i++) {
+      stdout.write("-=");
+    }
+    
+    stdout.write("\n\n");    
   }
   
   static void CloseApplication() {

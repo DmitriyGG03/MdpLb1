@@ -4,12 +4,12 @@ import 'Helper.dart';
 
 class ErrorView {
 
-  static void DisplayErrorMessage(String message) {
-    Helper.ClearConsole();
+  static void DisplayErrorMessage(String error) {
+    Helper.DrowEndMessage();
+    stdout.writeln("----------ERROR----------");
     
-    stdout.write("Error: $message.\n");
+    stdout.writeln("Error: $error.");
 
-    stdout.write("Press any button to exit");
-    
+    stdout.writeln("---------END-ERROR-------");
   }
 }

@@ -38,7 +38,7 @@ class ManagerView {
     String inputActionNumber;
     
     do {
-      Helper.ClearConsole();
+      Helper.DrowEndMessage();
       
       _DisplayProductList(products);
 
@@ -57,7 +57,7 @@ class ManagerView {
     }
     stdout.writeln("---------End-List---------");
     stdout.writeln();
-    stdout.writeln("Enter the product number: ");
+    stdout.writeln("Enter the product number you want to change: ");
   }
   
   //endregion
@@ -69,14 +69,14 @@ class ManagerView {
     String inputNewWholesalePrice;
     
     do {
-      Helper.ClearConsole();
+      Helper.DrowEndMessage();
 
       stdout.writeln("Old price: $price");
       stdout.write("New price: ");
 
       inputNewPrice = stdin.readLineSync() ?? "";
 
-      stdout.writeln("Old wholesale price: $price");
+      stdout.writeln("Old wholesale price: $wholesalePrice");
       stdout.write("New wholesale price: ");
 
       inputNewWholesalePrice = stdin.readLineSync() ?? "";

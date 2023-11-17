@@ -15,7 +15,7 @@ class AuthenticationView {
       String inputPassword;
 
       do {
-        Helper.ClearConsole();
+        Helper.DrowEndMessage();
 
         stdout.write("Enter your username (Enter \"exit\" to close app): ");
         inputUsername = stdin.readLineSync() ?? "";

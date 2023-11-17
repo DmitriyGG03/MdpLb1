@@ -41,18 +41,18 @@ class ManagerController {
     }
   }
 
-  void ChangeProductPrice() async {
+  void ChangeProductPrice() {
       //Find product by name
-      Product product = await FindProductByName();
+      Product product = FindProductByName();
       
       double prPrice, prWholesalePrice;
-      (prPrice, prWholesalePrice) = await GetNewPriceFromUserAsync(product.price, product.wholesalePrice);
+      (prPrice, prWholesalePrice) = GetNewPriceFromUser(product.price, product.wholesalePrice);
 
       _fileController.ChangeProductPrice(product.name, prPrice, prWholesalePrice);
   }
   
-  Future<Product> FindProductByName() async {
-      return managerView.GetProductByName(await _fileController.GetProducts());
+  Product FindProductByName() {
+      return managerView.GetProductByName(_fileController.GetProducts());
   }
   
   bool ProductSelectionHandler(String inputActionNumber, int length) {
@@ -67,7 +67,7 @@ class ManagerController {
       return true;
   }
 
-  Future<(double, double)> GetNewPriceFromUserAsync(double price, double wholesalePrice) async {
+  (double, double) GetNewPriceFromUser(double price, double wholesalePrice) {
       return managerView.GetNewPrice(price, wholesalePrice);
   }
 
