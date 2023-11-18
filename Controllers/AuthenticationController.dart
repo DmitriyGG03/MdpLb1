@@ -5,7 +5,7 @@ import '../Models/Domain/UserData.dart';
 import '../Models/Enums/AccountType.dart';
 import '../Models/Manager.dart';
 import '../Views/AuthenticationView.dart';
-import '../Views/ErrorView.dart';
+import '../Views/DisplayMessageView.dart';
 import '../Views/Helper.dart';
 import 'CustomerController.dart';
 import 'FileController.dart';
@@ -39,7 +39,7 @@ class AuthenticationController {
     bool AuthorizationInputHandler(String username, String password) {
         if(username == "exit") Helper.CloseApplication();
         else if(!_fileController.Authentication(username, password)) {
-            ErrorView.DisplayErrorMessage(_errorMessage);
+            DisplayMessageView.DisplayErrorMessage(_errorMessage);
 
             return false;
         }

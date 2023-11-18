@@ -2,7 +2,7 @@
 import 'dart:io';
 import 'Helper.dart';
 
-class ErrorView {
+class DisplayMessageView {
 
   static void DisplayErrorMessage(String error) {
     Helper.DrowEndMessage();
@@ -11,5 +11,14 @@ class ErrorView {
     stdout.writeln("Error: $error.");
 
     stdout.writeln("---------END-ERROR-------");
+  }
+
+  static void DisplaySuccessMessage(String info) {
+    Helper.DrowEndMessage();
+    stdout.writeln("-----------INFO----------");
+
+    stdout.writeln("Successful operation: $info.");
+
+    stdout.writeln("---------END-INFO--------");
   }
 }

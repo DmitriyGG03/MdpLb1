@@ -1,6 +1,7 @@
 import 'dart:io';
 import '../Controllers/ManagerController.dart';
 import '../Models/Domain/Product.dart';
+import 'DisplayMessageView.dart';
 import 'Helper.dart';
 
 class ManagerView {
@@ -83,6 +84,10 @@ class ManagerView {
 
     } while (!managerController.NewPriceHandler(inputNewPrice, inputNewWholesalePrice));
 
+    DisplayMessageView.DisplaySuccessMessage("Prices have been successfully changed! \nNew price: ${inputNewPrice}; New wholesale price: ${inputNewWholesalePrice}");
+    
+    Helper.DrowEndMessage();
+    
     return (double.parse(inputNewPrice), double.parse(inputNewWholesalePrice));
   }
   

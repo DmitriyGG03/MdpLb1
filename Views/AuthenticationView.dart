@@ -1,6 +1,6 @@
 import 'dart:io';
 import '../Controllers/AuthenticationController.dart';
-import 'ErrorView.dart';
+import 'DisplayMessageView.dart';
 import 'Helper.dart';
 
 class AuthenticationView {
@@ -24,6 +24,8 @@ class AuthenticationView {
         inputPassword = stdin.readLineSync() ?? "";
 
       } while(!_controller.AuthorizationInputHandler(inputUsername, inputPassword));
+
+      stdout.writeln();
     }
 
 }
