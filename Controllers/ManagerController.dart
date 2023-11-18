@@ -19,7 +19,7 @@ class ManagerController {
   late final ManagerView managerView;
   late final FileController _fileController;
 
-  ManagerController(this.manager, this._fileController) : super() {
+  ManagerController(this.manager, this._fileController) {
     managerView = new ManagerView(this);
 
     SelectActionNumber();
