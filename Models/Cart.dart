@@ -1,7 +1,4 @@
-import 'dart:collection';
-
 import 'CartItem.dart';
-import 'Domain/Product.dart';
 
 class Cart {
   List<CartItem> CartItems = [];

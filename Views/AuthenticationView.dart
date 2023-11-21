@@ -1,6 +1,5 @@
 import 'dart:io';
 import '../Controllers/AuthenticationController.dart';
-import 'DisplayMessageView.dart';
 import 'Helper.dart';
 
 class AuthenticationView {
